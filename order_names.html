@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenação de Nomes</title>
+</head>
+<body>
+    <h1>Ordenação de Nomes</h1>
+    <form id="formNomes">
+        <label for="nome">Digite um nome:</label>
+        <input type="text" id="nome" name="nome">
+        <button type="button" onclick="adicionarNome()">Adicionar</button>
+    </form>
+    
+    <h2>Nomes Digitados:</h2>
+    <ul id="listaNomes"></ul>
+
+    <button onclick="ordenarNomes()">Ordenar Nomes</button>
+
+    <script>
+        let nomes = [];
+
+        function adicionarNome() {
+            let inputNome = document.getElementById("nome");
+            let nome = inputNome.value.trim();
+
+            if (nome !== "") {
+                nomes.push(nome);
+                inputNome.value = "";
+                exibirNomes();
+            }
+        }
+
+        function exibirNomes() {
+            let listaNomes = document.getElementById("listaNomes");
+            listaNomes.innerHTML = "";
+
+            nomes.forEach(function(nome) {
+                let itemLista = document.createElement("li");
+                itemLista.textContent = nome;
+                listaNomes.appendChild(itemLista);
+            });
+        }
+
+        function ordenarNomes() {
+            nomes.sort();
+            exibirNomes();
+        }
+    </script>
+</body>
+</html>
